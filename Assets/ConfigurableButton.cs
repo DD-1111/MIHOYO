@@ -46,16 +46,19 @@ public class ConfigurableButton : MonoBehaviour
     private void Start()
     {
         _buttonBodyRenderer = GetComponent<Renderer>();
-        _originalColor = _buttonBodyRenderer.material.color;
+        Debug.Log("Pressed");
+        //_originalColor = _buttonBodyRenderer.material.color;
     }
 
 
     void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("Pressed");
         if (!_pressed)
             {
                 if (collision.gameObject.tag == triggeringObject.ToString())
                 {
+                Debug.Log("Pressed");
                     _pressed = true;
                     PressTween();
                     if (disappear)

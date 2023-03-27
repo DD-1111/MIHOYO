@@ -27,6 +27,29 @@ public class uneuclid : MonoBehaviour
 
     void Update()
     {
+        if (playerMouse.rightButton.wasPressedThisFrame)
+        {
+            if (selectedObject == null)
+            {
+                Debug.Log("1");
+                if (Physics.Raycast(transform.position, transform.forward, out hitInfo, Mathf.Infinity, objectMask))
+                {
+                    Debug.Log("2");
+                    Transform temp = hitInfo.transform;
+                    if (temp.tag == "Button")
+                    {
+                        temp.GetComponent<ConfigurableButton>().DoTrigger();
+                    }
+           
+                }
+            }
+            else
+            {
+                selectedObject.GetComponent<Rigidbody>().isKinematic = false;
+                selectedObject = null;
+            }
+        }
+
         if (playerMouse.leftButton.wasPressedThisFrame)
         {
             if (selectedObject == null)
